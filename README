@@ -1,0 +1,25 @@
+超人网站后台管理系统
+
+
+1. 关于MySQL，开发期间默认使用docker镜像构建, 版本为8.x，意味着使用的驱动将是最新的，为com.mysql.cj.jdbc.Driver
+构建步骤为：
+# docker 中下载 mysql (Lzslov123!)
+docker pull mysql
+
+#启动
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=wangkai -d mysql
+
+#进入容器
+docker exec -it mysql bash
+
+#登录mysql
+mysql -u root -p
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'wangkai!';
+
+#添加远程登录用户
+CREATE USER 'wangkai'@'%' IDENTIFIED WITH mysql_native_password BY 'wangkai!';
+GRANT ALL PRIVILEGES ON *.* TO 'wangkai'@'%';
+
+# 创建数据库
+CREATE DATABASE superwebsite default charset utf8;
+
